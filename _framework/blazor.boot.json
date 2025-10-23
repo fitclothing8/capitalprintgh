@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "capitalprint",
   "resources": {
-    "hash": "sha256-tdQbvQ9FJeWF8nl+OxCEcMJ4vBnV0uPSBhdZDHtIPtU=",
+    "hash": "sha256-OzeT6T+YMjnnZguQnLj96AnyPr70OuWAnpxoAHag97o=",
     "fingerprinting": {
       "CloudinaryDotNet.baqrqjdo4x.wasm": "CloudinaryDotNet.wasm",
       "Microsoft.AspNetCore.Components.t86lbjmhkc.wasm": "Microsoft.AspNetCore.Components.wasm",
@@ -70,7 +70,7 @@
       "System.8rv0tdtrxz.wasm": "System.wasm",
       "netstandard.uat9drzvsz.wasm": "netstandard.wasm",
       "System.Private.CoreLib.9ww8ih0mnn.wasm": "System.Private.CoreLib.wasm",
-      "capitalprint.ia81llq7pr.wasm": "capitalprint.wasm",
+      "capitalprint.gy3hub7rvt.wasm": "capitalprint.wasm",
       "dotnet.native.zs8okpq3bw.js": "dotnet.native.js",
       "dotnet.native.co6y5ewo6x.wasm": "dotnet.native.wasm",
       "dotnet.js": "dotnet.js",
@@ -163,7 +163,7 @@
       "System.Xml.XDocument.ocxzop4g63.wasm": "sha256-mO8Myb/YHsEXA9rrh5dZinveqXGkEbaG2JNi9ZpvjnY=",
       "System.8rv0tdtrxz.wasm": "sha256-xMF0eauQ5DkSzUozHLFFMQnL6DSJO09nJLtgag+Dzbw=",
       "netstandard.uat9drzvsz.wasm": "sha256-lmUEdEzlkS4DrQscoICp8JhBguMuI56Ul5qIsMJIVr4=",
-      "capitalprint.ia81llq7pr.wasm": "sha256-xhZ1TH9Csbm8IyyOU6MAOrjgZkX+3b8RKoOK5zPhF+k="
+      "capitalprint.gy3hub7rvt.wasm": "sha256-uLeAUxw9z+j9Uob3cQOMZrjqC//elPO8SJmAq91Kp3k="
     }
   },
   "cacheBootResources": true,
