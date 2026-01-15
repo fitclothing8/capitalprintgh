@@ -11,16 +11,12 @@
     background-color: #f9f9f9;
 }
 
-.main-layout {
-    display: flex !important;
-    flex-direction: column !important;
-}
 /* Header Styling */
 header {
     display: flex;
     flex-direction: column;
     background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for elegance */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Top Banner */
@@ -73,11 +69,13 @@ header {
         background-color: #ff69b4; /* Lighter pink for hover */
     }
 
-    .location-btn i,
-    .help-btn i {
-        margin-right: 5px;
-        font-size: 18px; /* Adjusted size for uniformity */
-    }
+.location-btn i,
+.help-btn i,
+.contact-info i,
+.chat-info i {
+    font-size: 18px;
+    margin-right: 5px;
+}
 
 /* Header Content */
 .header-content {
@@ -118,12 +116,6 @@ header {
     text-align: center;
     font-size: small;
 }
-
-    .contact-info i,
-    .chat-info i {
-        font-size: 22px;
-        margin-bottom: 5px;
-    }
 
 .phone-link,
 .chat-link {
