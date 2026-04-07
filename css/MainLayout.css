@@ -3,6 +3,28 @@
     font-family: Arial, sans-serif;
 }
 
+/* Global image defaults */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+/* Utility */
+.img-fluid { width: 100%; height: auto; display: block; object-fit: cover; }
+.clickable { cursor: pointer; touch-action: manipulation; }
+
+/* Buttons / touch targets */
+button, .nav-link, .mobile-action-btn, .menu-toggle, .location-btn, .help-btn {
+    min-height: 44px; /* recommended touch target */
+    padding: 8px 12px;
+    border-radius: 6px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    cursor: pointer;
+}
+
 /* Main Layout */
 .main-layout {
     display: flex;
@@ -15,135 +37,153 @@
 header {
     display: flex;
     flex-direction: column;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    will-change: transform;
 }
 
 /* Top Banner */
 .top-banner {
     background-color: #f6873f;
-    color: white;
-    padding: 10px 20px;
-    font-size: medium;
-    height: 40px;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    height: 48px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.5s ease-in-out;
+    transition: background-color 200ms ease, transform 200ms ease;
 }
 
-.top-banner-left {
-    text-align: left;
-    flex: 1;
-}
-
-.top-banner-right {
-    text-align: right;
-    flex: 1;
-}
+.top-banner-left { flex: 1; text-align: left; }
+.top-banner-right { flex: 1; text-align: right; display:flex; justify-content:flex-end; gap:8px; align-items:center; }
 
 #changing-text {
     display: inline-block;
-    transition: opacity 0.5s ease-in-out;
-    font-size: 18px;
-    font-weight: bold;
+    transition: opacity 300ms ease-in-out;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1;
 }
 
-/* Location and Help Buttons */
-.location-btn,
-.help-btn {
+/* Location / Help */
+.location-btn, .help-btn {
     display: inline-flex;
     align-items: center;
+    gap: 8px;
     text-decoration: none;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
+    color: #fff;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 8px 10px;
+    border-radius: 8px;
+    transition: background-color 180ms ease;
 }
+.location-btn:hover, .help-btn:hover { background: rgba(255,255,255,0.12); }
 
-    .location-btn:hover,
-    .help-btn:hover {
-        background-color: #ff69b4; /* Lighter pink for hover */
-    }
-
-.location-btn i,
-.help-btn i,
-.contact-info i,
-.chat-info i {
+/* Icon sizing consistency */
+.location-btn i, .help-btn i, .contact-info i, .chat-info i {
     font-size: 18px;
-    margin-right: 5px;
+    line-height: 1;
 }
 
 /* Header Content */
 .header-content {
-    background-color: white;
+    background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+    padding: 10px 16px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
 }
 
-.left-content {
-    display: flex;
-    align-items: center;
-    color: #f6873f;
-    font-size: large;
-    font-weight: bold;
-}
+.left-content { display:flex; align-items:center; gap:10px; color:#f6873f; font-weight:700; font-size:1.05rem; }
+.logo { height:44px; width:auto; object-fit:contain; }
 
-.logo {
-    height: 40px;
-    margin-right: 10px;
-}
+/* Right content */
+.right-content { display:flex; align-items:center; gap:16px; }
+.contact-info, .chat-info { display:flex; flex-direction:column; align-items:flex-end; text-align:right; font-size:0.85rem; gap:4px; }
 
-/* Right Content Styling */
-.right-content {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
+/* Links */
+.phone-link, .chat-link { color: #f6873f; text-decoration:none; }
+.phone-link:hover, .chat-link:hover { text-decoration:underline; }
 
-.contact-info,
-.chat-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    font-size: small;
-}
-
-.phone-link,
-.chat-link {
-    font-size: 14px;
-    color: #f6873f;
-    text-decoration: none;
-}
-
-    .phone-link:hover,
-    .chat-link:hover {
-        text-decoration: underline;
-    }
-
-/* Navigation Bar */
+/* Navigation */
 .nav-container {
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
+    background: #fff;
+    border-bottom: 1px solid #eee;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1100;
+}
+.nav { list-style:none; margin:0; padding:0 12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.nav-item { position:relative; }
+.nav-link { display:inline-flex; align-items:center; gap:8px; padding:8px 10px; color:#9b3f58; text-decoration:none; border-radius:6px; transition:background 150ms ease; }
+.nav-link:hover, .nav-link:focus { background: rgba(155,63,88,0.05); outline:none; }
+
+/* Dropdowns */
+.dropdown { display:none; position:absolute; left:0; top:calc(100% + 8px); background:#fff; border:1px solid #eee; box-shadow:0 6px 20px rgba(0,0,0,0.06); border-radius:8px; padding:8px; min-width:220px; }
+.nav-item:focus-within > .dropdown, .nav-item:hover > .dropdown { display:block; }
+/* Footer */
+.footer { width:100%; background: #f2f2f2; padding:20px; text-align:center; font-size:0.95rem; border-top:1px solid #e6e6e6; }
+
+/* Social icons */
+.social-media a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:6px; transition:transform 150ms ease; }
+.social-media a i { font-size:18px; }
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .header-content { padding:10px 12px; }
+    .top-banner { padding:8px 12px; height:52px; }
+    .logo { height:38px; }
+    .nav { gap:6px; padding:6px; }
+    .right-content { display:none; } /* hide heavy controls on small screens */
 }
 
-.nav {
-    list-style: none;
-    padding: 0;
+/* Mobile */
+@media (max-width: 768px) {
+    .menu-toggle { display:inline-flex; align-items:center; justify-content:center; font-size:20px; padding:8px; border-radius:6px; border:none; background:transparent; color:#f6873f; }
+    .nav { display:none; position:fixed; top:56px; left:0; right:0; background:#fff; flex-direction:column; padding:12px; box-shadow:0 10px 30px rgba(0,0,0,0.08); z-index:1200; }
+    .nav.active { display:flex; }
+    .contact-info, .chat-info { display:none; }
+}
+
+/* Floating button (scroll) */
+.floating-btn { position:fixed; right:16px; bottom:22px; width:48px; height:48px; border-radius:50%; background:#f6873f; color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(0,0,0,0.12); }
+/* Floating Carousel Styles
+*/
+.carousel-viewport {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.floating-carousel-track {
     display: flex;
-    justify-content: space-around;
-    margin: 0;
+    gap: 30px;
+    width: max-content;
+    animation: scroll-left 60s linear infinite;
+}
+
+@keyframes scroll-left {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.image-wrapper {
+    flex: 0 0 auto;
+}
+
+
+/* Make sure the images themselves don't wrap */
+.image-wrapper {
+    flex: 0 0 auto;
 }
 
 .nav {
@@ -225,173 +265,5 @@ header {
 .dropdown-item:hover .dropdown-submenu {
     display: block;
 }
-/* Footer */
-.footer {
-    width: 100%;
-    background-color: lightgray;
-    padding: 20px 0;
-    text-align: center;
-    font-size: small;
-    border-top: 2px solid #ddd;
-}
-
-.footer-item {
-    margin: 5px 0;
-}
-
-.social-media-animation {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
-}
-.social-media a img {
-    filter: invert(0);
-    transition: transform 0.3s ease-in-out;
-}
-
-.social-media a:hover img {
-    transform: scale(1.2);
-}
-.social-media a {
-    font-size: 24px;
-    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-    /* Assign colors */
-    .social-media a:nth-child(1) i {
-        color: #1877F2;
-    }
-    /* Facebook */
-    .social-media a:nth-child(2) i {
-        color: #E4405F;
-    }
-    /* Instagram */
-    .social-media a:nth-child(3) i {
-        color: #FF0000;
-    }
-    /* YouTube */
-    .social-media a:nth-child(4) i {
-        color: #000000;
-    }
-    /* TikTok */
-    .social-media a:nth-child(5) img {
-        filter: invert(0);
-    }
-    /* Threads (black icon) */
-
-    /* Hover Effect: Slightly brighter */
-    .social-media a:hover i {
-        transform: scale(1.2);
-        filter: brightness(115%);
-    }
-
-@media (max-width: 768px) {
-    .top-banner-right {
-        display: none;
-    }
-    #combined-section {
-        justify-content: center;
-    }
-}
-/* Desktop Styles */
-@media (min-width: 768px) {
-    .nav .mobile-extra {
-        display: none;
-    }
-}
-/* Mobile Styles */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-        font-size: 1.5rem;
-        border: none;
-        background: none;
-        color: #f6873f;
-        cursor: pointer;
-    }
-
-    .nav {
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        position: absolute;
-        width: 100%;
-        background-color: #fff;
-    }
-
-        .nav.active {
-            display: flex;
-        }
-
-    .header-content {
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-    }
-
-    .right-content,
-    .contact-info,
-    .chat-info {
-        font-size: 14px;
-    }
-}
-
-.mobile-action-btn {
-    border: 1px solid darkorange;
-    background-color: white;
-    color: darkorange;
-    padding: 8px 12px;
-    border-radius: 5px;
-    display: inline-block;
-    text-decoration: none;
-}
-.modal-backdrop.show {
-    opacity: 0.8; /* Increase (closer to 1) for a darker backdrop */
-}
-.floating-btn {
-    transition: transform 0.3s ease;
-}
-
-.rotate-up {
-    transform: rotate(180deg);
-}
-
-.rotate-down {
-    transform: rotate(0deg);
-}
-/*// Floating Carousel Styles
-*/
-.carousel-viewport {
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-}
-
-.floating-carousel-track {
-    display: flex;
-    gap: 30px;
-    width: max-content;
-    animation: scroll-left 60s linear infinite;
-}
-
-@keyframes scroll-left {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-50%);
-    }
-}
-
-.image-wrapper {
-    flex: 0 0 auto;
-}
-
-
-/* Make sure the images themselves don't wrap */
-.image-wrapper {
-    flex: 0 0 auto;
-}
-
+    
 
