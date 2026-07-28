@@ -1,74 +1,107 @@
 ﻿/* General Body Styling */
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
     color: #333;
     background-color: #f9f9f9;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
 }
 
-/* Solutions Page Styling */
-.solutions-page {
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Banner Image */
+.banner-image {
+    width: 100%;
+    height: 300px;
+    background: url('/Images/OIP4.jpeg') no-repeat center;
+    background-size: cover;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-/* Header Section */
-.header {
-    text-align: center;
+@media (max-width: 768px) {
+    .banner-image {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-image {
+        height: 150px;
+    }
+}
+
+/* About Section */
+.about-section {
+    background: linear-gradient(135deg, #ffffff, #fdf2e9);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
     margin-bottom: 40px;
 }
 
-    .header h1 {
-        font-size: 2.5em;
-        color: #007BFF;
-    }
-
-    .header p {
-        font-size: 1.2em;
-        color: #666;
-    }
-
-/* Card Styling */
-.card {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    background-color: #ffffff;
+.about-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
 }
 
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-.card-title {
-    font-size: 1.5em;
-    margin-bottom: 10px;
+.about-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
-.card-text {
-    font-size: 1em;
-    color: #555;
+.about-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #9b3f58;
 }
 
-/* Buttons */
-button, .btn {
-    font-size: 1em;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    background-color: #007BFF;
-    color: #ffffff;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+.about-text {
+    font-size: 1.05rem;
+    color: #444;
+    margin-bottom: 15px;
 }
 
-    button:hover, .btn:hover {
-        background-color: #0056b3;
+/* Services Section */
+.services-section {
+    margin-top: 40px;
+}
+
+.services-title {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 25px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.service-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f6873f;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 200ms ease;
+}
+
+    .service-card:hover {
+        background: linear-gradient(135deg, #f6873f, #ff9f5c);
+        color: #fff;
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
     }
 
 /* Footer Styling */
@@ -77,6 +110,7 @@ button, .btn {
     padding: 20px;
     background-color: #f8f9fa;
     border-top: 1px solid #e9ecef;
+    text-align: center;
 }
 
     .footer p {
@@ -93,19 +127,6 @@ button, .btn {
         .footer a:hover {
             text-decoration: underline;
         }
-
-/* Icons */
-.card .fas {
-    margin-right: 10px;
-    font-size: 1.5em;
-    vertical-align: middle;
-    color: #007BFF;
-}
-
-.footer .fas {
-    margin-right: 5px;
-    color: #007BFF;
-}
 
 /* Responsive Grid for Cards */
 .row {
@@ -125,55 +146,4 @@ button, .btn {
         flex: 0 0 100%;
         max-width: 100%;
     }
-}
-
-/* Animations */
-.card:hover .fas {
-    transform: rotate(360deg);
-    transition: transform 1s ease;
-}
-/*//service section for the list of services we have outlined.. horizontally */
-.services-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.services-section li {
-    margin-right: 20px;
-}
-
-    .services-section li:last-child {
-        margin-right: 0;
-    }
-
-/* Ensure the banner image scales properly on smaller screens */
-.banner-image {
-    width: 100%;
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-}
-
-@media (max-width: 768px) {
-    .banner-image {
-        height: 200px; /* Reduce height for smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .banner-image {
-        height: 150px; /* Further reduce height for very small screens */
-    }
-}
-
-/* Ensure any other images in the solution page are responsive */
-.about-section img {
-    max-width: 100%; /* Ensure the image does not exceed its container width */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Remove inline-block spacing issues */
-    margin: 0 auto; /* Center the image */
 }

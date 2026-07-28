@@ -1149,81 +1149,142 @@ body {
 /*flash moves of texts to increase... the view of customerss*/
 .floating-cartoon-banner {
     width: 100%;
-    height: 50px;
-    overflow: hidden;
-    background: linear-gradient(90deg, #00c6ff, #0072ff);
-    color: white;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    border-radius: 8px;
-    margin: 20px 0;
-    position: relative;
-}
-
-.cartoon-flash-track {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.flash-slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    text-align: center;
+    background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 16px;
+    box-shadow: 0 6px 18px rgba(0, 115, 230, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    animation: flashIn 12s linear infinite; /* total cycle = 5 slides × 2.4s */
+    margin: 8px 0 16px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
 }
 
-    /* Staggered delays for 5 slides */
-    .flash-slide:nth-child(1) {
-        animation-delay: 0s;
-    }
+/* keep existing animation but make text centered and compact */
+.floating-cartoon-banner .flash-slide {
+    display: inline-block;
+    width: auto;
+    white-space: nowrap;
+    padding: 4px 8px;
+    font-size: 1rem;
+    color: #fff;
+}
 
-    .flash-slide:nth-child(2) {
-        animation-delay: 2.4s;
-    }
+/* Order banner (light card under the blue bar) */
+.order-banner {
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    padding: 14px 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.04);
+    margin-bottom: 16px;
+    text-align: center;
+}
+.order-banner h3 {
+    margin: 0;
+    color: #2b2f7a; /* deep bluish */
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+.order-banner p {
+    margin: 6px 0 0;
+    color: #333;
+    font-size: 0.95rem;
+}
+.order-banner .highlight {
+    color: #f6873f;
+    font-weight: 700;
+}
 
-    .flash-slide:nth-child(3) {
-        animation-delay: 4.8s;
-    }
+/* GIF banner */
+.carousel-gif-wrap.full-width {
+    margin: 12px 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+.carousel-gif-wrap.full-width .carousel-gif {
+    width: 100%;
+    height: auto;
+    max-height: 48vh;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
 
-    .flash-slide:nth-child(4) {
-        animation-delay: 7.2s;
-    }
+/* Header description bar (icon left, big centered title, CTA on right) */
+.header-description {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #a7d9ea 0%, #bfeaf3 100%);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    margin-bottom: 18px;
+    box-sizing: border-box;
+}
+.header-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    object-fit: cover;
+    flex: 0 0 64px;
+    border: 2px solid rgba(255,255,255,0.45);
+    background: #fff;
+}
+.header-text {
+    flex: 1 1 auto;
+    margin: 0;
+    color: #06384a;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.1;
+    padding: 0 8px;
+}
 
-    .flash-slide:nth-child(5) {
-        animation-delay: 9.6s;
-    }
+/* CTA button on the right */
+.sale-btn {
+    flex: 0 0 auto;
+    background: #ffffff;
+    color: #0b6e8a;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(11,110,138,0.08);
+    cursor: pointer;
+}
+.sale-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(0.98);
+}
 
-@keyframes flashIn {
-    0% {
-        opacity: 0;
-        transform: translateX(100%);
+/* Responsive: stack neatly on small screens */
+@media (max-width: 768px) {
+    .header-description {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        padding: 12px;
     }
-
-    10% {
-        opacity: 1;
-        transform: translateX(0);
+    .header-icon {
+        width: 56px;
+        height: 56px;
     }
-
-    30% {
-        opacity: 1;
-        transform: translateX(0);
+    .header-text {
+        font-size: 1.05rem;
     }
-
-    40% {
-        opacity: 0;
-        transform: translateX(-100%);
+    .sale-btn {
+        width: auto;
     }
-
-    100% {
-        opacity: 0;
-    }
+    .floating-cartoon-banner { padding: 8px; font-size: 0.95rem; }
+    .order-banner { padding: 12px; }
 }
 
