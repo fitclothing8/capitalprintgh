@@ -30,7 +30,7 @@
     <div id="app"></div>
     <button id="scrollToggleBtn" class="floating-btn">
         <i class="fas fa-arrow-down"></i>
-    </button>                       
+    </button>
 
     <!-- Core libraries -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -45,7 +45,7 @@
 
     <!-- Pan/Zoom -->
     <script src="https://unpkg.com/@panzoom/panzoom/dist/panzoom.min.js"></script>
-
+    <script src="js/javahelpers.js"></script>
     <!-- Finally, Blazor bootstraps the app -->
     <script src="_framework/blazor.webassembly.js"></script>
     <script>
@@ -125,6 +125,270 @@
         function hideLoadingSpinner() {
             console.log("hideLoadingSpinner");
         }
+    </script>
+    <script>
+        // Welcome popup timer (10 seconds)
+        window.setWelcomePopupTimer = function (dotNetHelper) {
+            setTimeout(function () {
+                if (dotNetHelper) {
+                    dotNetHelper.invokeMethodAsync('ShowWelcomePopup');
+                }
+            }, 10000); // 10 seconds
+        };
+
+        // Add new order brand row to the table
+        window.addOrderBrandRow = function () {
+            try {
+                var table = document.getElementById('orderBrandTable');
+                if (!table) {
+                    console.warn('addOrderBrandRow: #orderBrandTable not found');
+                    return;
+                }
+
+                var tbody = table.querySelector('tbody');
+                if (!tbody) return;
+
+                // Create new row with same structure as existing row
+                var newRow = document.createElement('tr');
+                newRow.className = 'order-brand-row';
+                newRow.innerHTML = `
+            <td>
+              <select class="form-control brandSelect">
+                <option value="">Select Brand</option>
+                <option value="Vicayo">Vicayo</option>
+                <option value="Zara">Zara</option>
+                <option value="Nisa">Nisa</option>
+                <option value="Supreme">Supreme</option>
+                <option value="Pilot">Pilot</option>
+                <option value="Aoakyami">Aoakyami</option>
+                <option value="MPO">MPO</option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control typeSelect">
+                <option value="">Select Type</option>
+                <option value="Cotton">Cotton</option>
+                <option value="Jersey">Jersey</option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control sizeSelectBrand">
+                <option value="">Select Size</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">2XL</option>
+                <option value="XXXL">3XL</option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control quantityInput">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </td>
+            <td>
+              <button class="btn btn-danger btn-sm" type="button" onclick="removeOrderBrandRow(this)">Remove</button>
+            </td>
+          `;
+
+                tbody.appendChild(newRow);
+                console.log('Order brand row added');
+            } catch (err) {
+                console.error('addOrderBrandRow error:', err);
+            }
+        };
+
+        // Remove order brand row
+        window.removeOrderBrandRow = function (button) {
+            try {
+                var row = button.closest('tr');
+                if (row) {
+                    row.remove();
+                    console.log('Order brand row removed');
+                }
+            } catch (err) {
+                console.error('removeOrderBrandRow error:', err);
+            }
+        };
+
+        // Initialize page components
+        window.initializePageComponents = function (elementId, text) {
+            try {
+                var el = document.getElementById(elementId);
+                if (el) {
+                    el.textContent = text || el.textContent;
+                }
+            } catch (err) {
+                console.warn('initializePageComponents error:', err);
+            }
+        };
+
+        // Generate thumbnails
+        window.generateThumbnails = function (thumbSrc) {
+            try {
+                var container = document.querySelector('.thumbnail-container');
+                if (!container) {
+                    console.warn('generateThumbnails: .thumbnail-container not found');
+                    return;
+                }
+            } catch (err) {
+                console.warn('generateThumbnails error:', err);
+            }
+        };
+
+        // Re-initialize panzoom
+        window.reInitPanzoom = function () {
+            try {
+                var img = document.getElementById('mainModalImage');
+                if (!img || !window.Panzoom) return;
+
+                if (img.panzoomInstance) {
+                    img.panzoomInstance.destroy();
+                    img.panzoomInstance = null;
+                }
+                img.panzoomInstance = window.Panzoom(img, {
+                    maxScale: 4,
+                    minScale: 1,
+                    contain: 'outside',
+                    startScale: 1,
+                    step: 0.3,
+                    panOnlyWhenZoomed: true
+                });
+                if (img.parentElement) {
+                    img.parentElement.addEventListener('wheel', img.panzoomInstance.zoomWithWheel);
+                }
+            } catch (err) {
+                console.warn('reInitPanzoom error:', err);
+            }
+        };
+
+        // Capture modal and send order
+        window.captureModalAndSend = function () {
+            try {
+                const orderTable = document.getElementById('orderBrandTable');
+
+                if (!orderTable) {
+                    alert('Order table not found. Please refresh and try again.');
+                    return;
+                }
+
+                const orders = [];
+                const rows = orderTable.querySelectorAll('.order-brand-row');
+
+                rows.forEach(function (row) {
+                    const brand = row.querySelector('.brandSelect')?.value || '';
+                    const type = row.querySelector('.typeSelect')?.value || '';
+                    const size = row.querySelector('.sizeSelectBrand')?.value || '';
+                    const quantity = row.querySelector('.quantityInput')?.value || '';
+
+                    // Ignore completely empty rows
+                    if (!brand && !type && !size) {
+                        return;
+                    }
+
+                    orders.push({
+                        brand: brand,
+                        type: type,
+                        size: size,
+                        quantity: quantity
+                    });
+                });
+
+                if (orders.length === 0) {
+                    alert('Please select at least one brand order.');
+                    return;
+                }
+
+                // Validate each order before WhatsApp opens
+                for (let i = 0; i < orders.length; i++) {
+                    if (!orders[i].brand) {
+                        alert('Please select a brand for order ' + (i + 1) + '.');
+                        return;
+                    }
+
+                    if (!orders[i].type) {
+                        alert('Please select a type for order ' + (i + 1) + '.');
+                        return;
+                    }
+
+                    if (!orders[i].size) {
+                        alert('Please select a size for order ' + (i + 1) + '.');
+                        return;
+                    }
+
+                    if (!orders[i].quantity) {
+                        alert('Please select a quantity for order ' + (i + 1) + '.');
+                        return;
+                    }
+                }
+
+                let message = 'Hello Capital Print GH,\n\n';
+                message += 'I would like to place an order:\n\n';
+
+                orders.forEach(function (order, index) {
+                    message += 'Order ' + (index + 1) + '\n';
+                    message += 'Brand: ' + order.brand + '\n';
+                    message += 'Type: ' + order.type + '\n';
+                    message += 'Size: ' + order.size + '\n';
+                    message += 'Quantity: ' + order.quantity + '\n\n';
+                });
+
+                message += 'Please confirm availability and pricing. Thank you.';
+
+                /*
+                * WhatsApp wa.me numbers should be written
+                * without the leading + sign.
+                */
+                const whatsappNumber = '2330598185513';
+
+                const whatsappUrl =
+                    'https://wa.me/' +
+                    whatsappNumber +
+                    '?text=' +
+                    encodeURIComponent(message);
+
+                // Open WhatsApp / WhatsApp Web
+                window.open(whatsappUrl, '_blank');
+
+                // Close the order popup
+                closeOrderPopup();
+
+            } catch (err) {
+                console.error('captureModalAndSend error:', err);
+                alert('An error occurred while processing your order.');
+            }
+        };
+
+        // Close order modal
+        window.closeOrderModal = function () {
+            try {
+                var modal = document.getElementById('orderPopup');
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+            } catch (err) {
+                console.warn('closeOrderModal error:', err);
+            }
+        };
+
+        // Open order popup
+        window.openOrderPopup = function () {
+            try {
+                var modal = document.getElementById('orderPopup');
+                if (modal) {
+                    modal.style.display = 'block';
+                }
+            } catch (err) {
+                console.warn('openOrderPopup error:', err);
+            }
+        };
     </script>
 </body>
 </html>
